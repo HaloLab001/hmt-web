@@ -1,0 +1,22 @@
+{
+  "name": "si-sqlserver-169-1734771507969921024",
+  "config": {
+    "connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+    "table.name.format": "datax_web.datax_web.ser_dept2",
+    "connection.password": "Test1234",
+    "topics": "datax_web.datax_web.ser_dept2",
+    "transforms.ExtractField.field": "after",
+    "batch.size": "3000",
+    "transforms": "ExtractField",
+    "delete.enabled": true,
+    "auto.evolve": "true",
+    "connection.user": "sa",
+    "db.timezone": "Asia/Shanghai",
+    "auto.create": "true",
+    "connection.url": "jdbc:sqlserver://10.16.16.169:1433;DatabaseName=datax_web",
+    "insert.mode": "upsert",
+    "pk.mode": "record_key",
+    "quote.sql.identifiers": "NEVER",
+    "transforms.ExtractField.type": "org.apache.kafka.connect.transforms.ExtractField$Value"
+  }
+}

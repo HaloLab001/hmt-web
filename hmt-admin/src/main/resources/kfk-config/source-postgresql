@@ -1,0 +1,16 @@
+{
+  "name": "so-164pg-pg.dept",
+  "config": {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "plugin.name": "pgoutput",
+    "database.hostname": "10.16.16.164",
+    "database.port": "1921",
+    "database.dbname": "datax",
+    "database.user": "test",
+    "database.password": "test",
+    "database.server.name": "psql",
+    "table.include.list":"pg.dept",
+    "database.history.kafka.bootstrap.servers": "10.16.16.169:9092",
+    "database.history.kafka.topic": "history-164pg-pg.dept"
+  }
+}

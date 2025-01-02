@@ -1,0 +1,23 @@
+{
+  "name": "si-halo-164-1726893465222254592",
+  "config": {
+    "connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+    "table.name.format": "jet.dept13",
+    "connection.password": "test",
+    "dialect.name": "PostgreSqlDatabaseDialect",
+    "topics": "debezium.JET.DEPT13",
+    "transforms.ExtractField.field": "after",
+    "batch.size": "3000",
+    "transforms": "ExtractField",
+    "delete.enabled": true,
+    "auto.evolve": "true",
+    "connection.user": "test",
+    "db.timezone": "Asia/Shanghai",
+    "auto.create": "true",
+    "connection.url": "jdbc:halo://10.16.16.164:1921/debezium",
+    "insert.mode": "upsert",
+    "pk.mode": "record_key",
+    "quote.sql.identifiers": "NEVER",
+    "transforms.ExtractField.type": "org.apache.kafka.connect.transforms.ExtractField$Value"
+  }
+}

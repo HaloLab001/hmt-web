@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wugui.hmt.admin.mapper.JobDataContrastDetailsMapper">
+
+    <insert id="save" parameterType="com.wugui.hmt.admin.entity.JobDataContrastDetails" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO job_data_contrast_details (task_id, reader_table, writer_table, reader_record_rows, writer_record_rows, is_correct, reader_info, writer_info, mapping_info, meta_type_id)
+		values (#{taskId}, #{readerTable}, #{writerTable}, #{readerRecordRows}, #{writerRecordRows}, #{isCorrect}, #{readerInfo}, #{writerInfo}, #{mappingInfo}, #{metaTypeId});
+	</insert>
+
+	<update id="update" parameterType="com.wugui.hmt.admin.entity.JobDataContrastDetails">
+        UPDATE job_data_contrast_details
+        SET task_id = #{taskId},
+        	reader_table = #{readerTable},
+        	writer_table = #{writerTable},
+        	reader_record_rows = #{readerRecordRows},
+        	writer_record_rows = #{writerRecordRows},
+        	is_correct = #{isCorrect}
+        WHERE id = #{id}
+    </update>
+
+	<select id="pageList" parameterType="java.util.HashMap" resultType="com.wugui.hmt.admin.entity.JobDataContrastDetails">
+		SELECT * FROM job_data_contrast_details
+		<trim prefix="WHERE" prefixOverrides="AND | OR" >
+		    AND task_id = #{taskId}
+			<if test="tableName != null and tableName != ''">
+				AND (reader_table like CONCAT(CONCAT('%', #{tableName}), '%') or writer_table like CONCAT(CONCAT('%', #{tableName}), '%') )
+			</if>
+			<if test="isCorrect gte 0">
+				AND is_correct = #{isCorrect}
+			</if>
+			<if test="fastQue == 0">
+				AND reader_table is null
+			</if>
+			<if test="fastQue == 1">
+				AND writer_table is null
+			</if>
+			<if test="metaTypeId != null and metaTypeId != ''">
+				AND meta_type_id = #{metaTypeId}
+			</if>
+		</trim>
+		ORDER BY id DESC
+		LIMIT #{pagesize} offset #{offset}
+	</select>
+
+	<select id="pageListCount" parameterType="java.util.HashMap" resultType="int">
+		SELECT count(1)
+		FROM job_data_contrast_details
+		<trim prefix="WHERE" prefixOverrides="AND | OR" >
+			AND task_id = #{taskId}
+			<if test="tableName != null and tableName != ''">
+				AND (reader_table like CONCAT(CONCAT('%', #{tableName}), '%') or writer_table like CONCAT(CONCAT('%', #{tableName}), '%') )
+			</if>
+			<if test="isCorrect gte 0">
+				AND is_correct = #{isCorrect}
+			</if>
+			<if test="fastQue == 0">
+				AND reader_table is null
+			</if>
+			<if test="fastQue == 1">
+				AND writer_table is null
+			</if>
+			<if test="metaTypeId != null and metaTypeId != ''">
+				AND meta_type_id = #{metaTypeId}
+			</if>
+		</trim>
+	</select>
+
+	<delete id="delete" parameterType="java.util.HashMap">
+		DELETE
+		FROM job_data_contrast_details
+		WHERE id = #{id}
+	</delete>
+
+	<delete id="deleteByTaskId" parameterType="java.util.HashMap">
+		DELETE
+		FROM job_data_contrast_details
+		WHERE task_id = #{taskId}
+	</delete>
+
+	<select id="getInfoById" parameterType="java.util.HashMap" resultType="com.wugui.hmt.admin.entity.JobDataContrastDetails">
+		SELECT * FROM job_data_contrast_details WHERE id = #{id}
+	</select>
+
+	<select id="detailsCount" resultType="Map">
+		select COUNT(reader_table) AS readerTableCount,COUNT(writer_table) AS writerTableCount,COUNT((is_correct=1) or null) AS isCorrectCount from job_data_contrast_details
+		<trim prefix="WHERE" prefixOverrides="AND | OR" >
+			AND task_id = #{taskId}
+			<if test="metaTypeId != null and metaTypeId != ''">
+				AND meta_type_id = #{metaTypeId}
+			</if>
+		</trim>
+	</select>
+
+</mapper>

@@ -1,0 +1,19 @@
+{
+  "name": "so-ora20g",
+  "config": {
+    "connector.class" : "io.debezium.connector.oracle.OracleConnector",
+    "tasks.max" : "1",
+    "database.server.name" : "debezium",
+    "database.hostname" : "10.16.16.212",
+    "database.port" : "1521",
+    "database.dbname" : "ORCL",
+    "database.user" : "test11g",
+    "database.password" : "test11g",
+    "schema.include.list" : "SCOTT",
+    "table.include.list" : "SCOTT.DEPT11",
+    "log.mining.strategy": "online_catalog",
+    "log.mining.continuous.mine": "true",
+    "database.history.kafka.bootstrap.servers" : "10.16.16.169:9092",
+    "database.history.kafka.topic": "changes.DEPT11"
+  }
+}

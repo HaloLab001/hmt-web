@@ -1,0 +1,31 @@
+datasource:
+  from:
+    type: oracle
+    jdbc_url: jdbc:oracle:thin:@//10.16.6.188:1521/orclpdb1
+    jdbc_username: medical
+    jdbc_password: medical
+    jdbc_driver_class: oracle.jdbc.OracleDriver
+    schema: jet
+#    table:
+#      - { name: ACT_HI_DETAIL,splitPk: ID_ }
+#      - { name: ACT_RU_IDENTITYLINK,splitPk: }
+    table: 'all'
+  to:
+    type: halo
+    jdbc_url: jdbc:halo://10.16.6.187:1921/test
+    jdbc_username: test
+    jdbc_password: test
+    jdbc_driver_class: com.halo.Driver
+    schema: medical
+
+job:
+  mysql:
+    url: 10.16.16.164
+    username: 'root'
+    password: '123456'
+    database: dataxweblocal
+    driver-class-name: com.mysql.jdbc.Driver
+  webapi: http://127.0.0.1:8085
+  logpath: C:\Halo\java\datamove\datax-web\data\applogs\executor\jobhandler\
+
+

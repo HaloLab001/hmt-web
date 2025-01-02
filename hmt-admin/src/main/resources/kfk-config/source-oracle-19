@@ -1,0 +1,16 @@
+{
+  "name": "so-213ora-TEST.DEPT",
+  "config": {
+    "connector.class" : "io.debezium.connector.oracle.OracleConnector",
+    "tasks.max" : "1",
+    "database.server.name" : "debezium",
+    "database.hostname" : "10.16.16.213",
+    "database.port" : "1521",
+    "database.user" : "c##dbzuser",
+    "database.password" : "dbz",
+    "database.dbname" : "ORCLCDB",
+    "table.include.list" : "TEST.DEPT",
+    "database.history.kafka.bootstrap.servers" : "10.16.16.164:9092",
+    "database.history.kafka.topic": "history-213ora-TEST.DEPT"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "si-oracle-212-1734418934154924032",
+  "config": {
+    "connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+    "table.name.format": "datax_web.dept8",
+    "connection.password": "weaver",
+    "topics": "orcl.datax_web.dept8",
+    "transforms.ExtractField.field": "after",
+    "batch.size": "3000",
+    "transforms": "ExtractField",
+    "delete.enabled": true,
+    "auto.evolve": "true",
+    "connection.user": "weaver",
+    "db.timezone": "Asia/Shanghai",
+    "auto.create": "true",
+    "connection.url": "jdbc:oracle:thin:@//10.16.16.212:1521/orcl",
+    "insert.mode": "upsert",
+    "pk.mode": "record_key",
+    "quote.sql.identifiers": "NEVER",
+    "transforms.ExtractField.type": "org.apache.kafka.connect.transforms.ExtractField$Value"
+  }
+}

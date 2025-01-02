@@ -1,0 +1,20 @@
+{
+  "name": "source-mysql169-dept8",
+  "config": {
+    "connector.class": "io.debezium.connector.mysql.MySqlConnector",
+    "tasks.max": "1",
+    "database.server.name": "mysql",
+    "database.hostname": "10.16.16.169",
+    "database.port": "3306",
+    "database.user": "root",
+    "database.password": "root1234",
+    "database.allowPublicKeyRetrieval": "true",
+    "database.server.id": "184001",
+    "database.include.list": "lwl_test",
+    "table.include.list":"lwl_test.dept8",
+    "database.history.kafka.bootstrap.servers": "10.16.16.169:9092",
+    "database.history.kafka.topic": "169mysql-lwl_test.dept8"
+  }
+}
+
+

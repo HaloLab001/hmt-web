@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wugui.hmt.admin.mapper.SubMetaDataMapper">
+
+    <select id="getJobTemplateInfoById" resultType="com.wugui.hmt.admin.tool.pojo.SubTemplatePojo">
+
+        SELECT
+            a.id,
+            a.job_group,
+            a.job_cron,
+            a.project_id,
+            a.executor_route_strategy,
+            a.executor_handler,
+            a.executor_param,
+            a.executor_block_strategy,
+            a.executor_timeout,
+            a.executor_fail_retry_count,
+            a.glue_type,
+            a.glue_source,
+            a.glue_remark
+        FROM
+            job_template a
+        WHERE
+            a.id = #{id}
+
+    </select>
+
+    <select id="getMetaDashboardList" resultType="com.wugui.hmt.admin.tool.pojo.MetaTypePojo">
+
+        SELECT
+        job_cron as metaTypeId,
+        COUNT(*) AS allTotal,
+        COUNT((job_cron = a.job_cron and last_handle_code = 0 ) or null) AS awaitTotal,
+        COUNT((job_cron = a.job_cron and last_handle_code = 1 ) or null) AS runningTotal,
+        COUNT((job_cron = a.job_cron and last_handle_code = 200 ) or null) AS sucTotal,
+        COUNT((job_cron = a.job_cron and last_handle_code IN(500,502) ) or null) AS failTotal
+        FROM
+        job_info a
+        WHERE
+        1 = 1
+        AND glue_type = 'GLUE_SHELL'
+        <if test="projectIds != null and projectIds.length != 0">
+            AND project_id IN
+            <foreach collection="projectIds" item="projectId" index="index" open="(" close=")" separator=",">
+                #{projectId}
+            </foreach>
+        </if>
+        GROUP BY
+        job_cron
+
+    </select>
+
+    <select id="getDataDashboardInfo" resultType="com.wugui.hmt.admin.tool.pojo.DataDashboardPojo">
+
+        SELECT
+        COUNT(*) AS allTotal,
+        COUNT((last_handle_code = 0) or null) AS awaitTotal,
+        COUNT((last_handle_code = 1) or null) AS runningTotal,
+        COUNT((last_handle_code = 200) or null) AS sucTotal,
+        COUNT((last_handle_code IN ( 500, 502 )) or null) AS failTotal
+        FROM
+            job_info
+        WHERE
+            glue_type != 'GLUE_SHELL'
+
+    </select>
+
+
+</mapper>

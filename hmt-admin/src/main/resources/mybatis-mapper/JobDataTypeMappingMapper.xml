@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wugui.hmt.admin.mapper.JobDataTypeMappingMapper">
+
+    <insert id="save" parameterType="com.wugui.hmt.admin.entity.JobDataTypeMapping" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO job_data_type_mapping (datasource, reader_data_type, writer_data_type, is_retain_value)
+		values (#{datasource}, #{readerDataType}, #{writerDataType}, #{isRetainValue});
+	</insert>
+
+	<update id="update" parameterType="com.wugui.hmt.admin.entity.JobDataTypeMapping">
+        UPDATE job_data_type_mapping
+        SET datasource = #{datasource},
+        	reader_data_type = #{readerDataType},
+        	writer_data_type = #{writerDataType},
+        	is_retain_value = #{isRetainValue}
+        WHERE id = #{id}
+    </update>
+
+	<select id="pageList" parameterType="java.util.HashMap" resultType="com.wugui.hmt.admin.entity.JobDataTypeMapping">
+		SELECT * FROM job_data_type_mapping
+		<trim prefix="WHERE" prefixOverrides="AND | OR" >
+			<if test="datasource != null and datasource != ''">
+				AND datasource = #{datasource}
+			</if>
+		</trim>
+		ORDER BY id DESC
+		LIMIT #{pagesize} offset #{offset}
+	</select>
+
+	<select id="pageListCount" parameterType="java.util.HashMap" resultType="int">
+		SELECT count(1)
+		FROM job_data_type_mapping
+		<trim prefix="WHERE" prefixOverrides="AND | OR" >
+			<if test="datasource != null and datasource != ''">
+				AND datasource = #{datasource}
+			</if>
+		</trim>
+	</select>
+
+	<delete id="delete" parameterType="java.util.HashMap">
+		DELETE
+		FROM job_data_type_mapping
+		WHERE id = #{id}
+	</delete>
+
+	<select id="getInfoById" parameterType="java.util.HashMap" resultType="com.wugui.hmt.admin.entity.JobDataTypeMapping">
+		SELECT * FROM job_data_type_mapping WHERE id = #{id}
+	</select>
+
+	<select id="getListBydatasource" parameterType="java.util.HashMap" resultType="com.wugui.hmt.admin.entity.JobDataTypeMapping">
+		SELECT * FROM job_data_type_mapping WHERE datasource = #{datasource}
+	</select>
+
+</mapper>

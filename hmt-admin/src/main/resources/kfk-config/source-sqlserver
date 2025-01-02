@@ -1,0 +1,15 @@
+{
+  "name": "so-169-sqlserver.dept",
+  "config": {
+    "connector.class": "io.debezium.connector.sqlserver.SqlServerConnector",
+    "database.hostname": "10.16.16.169",
+    "database.port": "1433",
+    "database.dbname": "datax",
+    "database.user": "test",
+    "database.password": "test",
+    "database.server.name": "psql",
+    "table.include.list":"pg.dept",
+    "database.history.kafka.bootstrap.servers": "10.16.16.169:9092",
+    "database.history.kafka.topic": "history-169-sqlserver.dept"
+  }
+}

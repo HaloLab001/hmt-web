@@ -1,0 +1,18 @@
+{
+  "name": "so-db2",
+  "config": {
+    "connector.class": "io.debezium.connector.db2.Db2Connector",
+    "database.dbname": "sample",
+    "database.user": "db2inst1",
+    "tasks.max": "1",
+    "database.history.kafka.bootstrap.servers": "10.16.16.169:9092",
+    "database.history.kafka.topic": "so-db2-214-sample.LWL_TEST.KFK_CES3",
+    "database.server.name": "halo0root",
+    "log.mining.strategy": "online_catalog",
+    "database.port": "8790",
+    "database.hostname": "10.16.6.214",
+    "log.mining.continuous.mine": "true",
+    "database.password": "db2inst1",
+    "table.include.list": "LWL_TEST.KFK_CES3"
+  }
+}

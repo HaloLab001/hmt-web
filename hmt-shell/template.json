@@ -1,0 +1,52 @@
+{
+  "job": {
+    "setting": {
+      "speed": {
+        "channel": 4
+      },
+      "errorLimit": {
+        "record": 0,
+        "percentage": 0.02
+      }
+    },
+    "content": [
+      {
+        "reader": {
+          "name": "haloreader",
+          "parameter": {
+            "username": "db2inst1",
+            "password": "db2inst1",
+            "column": ["*"],
+            "splitPk": "",
+            "connection": [
+              {
+                "table": [
+                  "db2inst1.ldusertrace"
+                ],
+                "jdbcUrl": [
+                  "jdbc:halo://10.16.16.204:1921/lis"
+                ]
+              }
+            ]
+          }
+        },
+        "writer": {
+          "name": "rdbmswriter",
+          "parameter": {
+            "username": "db2inst1",
+            "password": "db2inst1",
+            "column": ["*"],
+            "connection": [
+              {
+                "table": [
+                  "DB2TEST .LDUSERTRACE"
+                ],
+                "jdbcUrl": "jdbc:db2://10.16.16.208:50000/db2test"
+              }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}
