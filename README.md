@@ -26,7 +26,9 @@ HaloMigrationTool 羲和数据库迁移工具。
 - 一键迁移: 源端Oracle、MySQL 至 目标端Halo
 
 # 架构说明 
- <img src="https://halo-lwl.oss-cn-hangzhou.aliyuncs.com/hmt-framework.png" style="width: 40%; height: auto;" />
+<p align="center">
+    <img width="500" src="https://halo-lwl.oss-cn-hangzhou.aliyuncs.com/hmt-framework.png" style="width: 100%; height: auto;" />
+</p>
 
 - Hmt-Web: 提供简洁直观的web操作界面，通过页面完成迁移任务。
 - 调度中心: 页面菜单栏提供数据源管理、任务管理、统计报表等多个功能模块。
