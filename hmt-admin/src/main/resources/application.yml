@@ -4,10 +4,10 @@ server:
 spring:
   #数据源
   datasource:
-    url: jdbc:halo://10.16.16.164:1921/hmt?currentSchema=datax_web&ignore_warn=':postgresql:'
+    url: jdbc:halo://127.0.0.1:1921/hmt?currentSchema=datax_web&ignore_warn=':postgresql:'
     driver-class-name: com.halo.Driver
     username: dbadmin
-    password: 123456
+    password: dbadmin
 
     hikari:
       ## 最小空闲连接数量
@@ -110,7 +110,7 @@ datax:
     logretentiondays: 30
   version: V-241230
   debezium:
-    debeziumHost: 10.16.16.169
+    debeziumHost: 127.0.0.1
     connectorPort: 8083
     kafkaPort: 9092
 
