@@ -41,5 +41,3 @@ HaloMigrationTool 羲和数据库迁移工具。
 # 执行概念
 
 将迁移工具部署后，启动hmt-web服务，通过web界面建立迁移任务并执行，通过配置过的并发度将任务批量下发到hmt数据同步模块，将不同数据源的同步抽象为从源头数据源读取数据的插件，以及向目标端写入数据的Writer插件，由FrameWork连接Reader和Writer，作为两者的数据传输通道，处理缓冲，流控，并发，转换等，Writer不断的向FrameWork取数据并写入目标端，从而完成数据迁移任务。
-"# hmt-web" 
-"# hmt-web" 
